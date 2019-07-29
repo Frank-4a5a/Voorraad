@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <!-- Latest compiled and minified CSS -->
