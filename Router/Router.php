@@ -51,9 +51,7 @@ class Router
   {
     if ($controllerFileAndMethodExists == false)
     {
-      include_once 'View/Headerview.php';
       include_once "View/HomeView.php";
-      include_once 'View/FooterView.php';
       return;
     }
     $methodName = $this->methodName;
