@@ -19,8 +19,8 @@ require "Controller/HomeController.php";
 
 
 
-include_once "View/FooterView.php";
-include_once "View/Headerview.php";
-$router = new Router();
 
+include_once "View/HeaderView.php";
+$router = new Router();
+include_once "View/FooterView.php";
 ?>
