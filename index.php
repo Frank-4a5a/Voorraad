@@ -16,7 +16,7 @@ require "Model/VoorraadModel.php";
 require "Controller/LoginController.php";
 require "Model/LoginModel.php";
 require "Controller/HomeController.php";
-include_once "View/Headerview.php'";
+include_once "View/Headerview.php";
 $router = new Router();
 include_once "View/FooterView.php";
 ?>
