@@ -2,7 +2,35 @@ html, body
 {
   background-color: lightyellow !important;
 }
-#nav-bar
+td
 {
-  background-color: lightblue !important;
+  width: 50px;
+  height: 35px;
+  border: 1px blue solid;
 }
+table
+{
+  border: 2px blue solid;
+}
+.container
+{
+  /* border: 1px red solid; */
+}
+/* ipad mini landscape */
+/* @media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 1)
+{
+
+}
+/* ipad mini portrait */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 1)
+{
+
+} */
