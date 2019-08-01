@@ -1,6 +1,6 @@
 </div>
 <div class="container">
-<h3>Footer</h3>
+<p>footerpagina</p>
 </div>
 </body>
 </html>
