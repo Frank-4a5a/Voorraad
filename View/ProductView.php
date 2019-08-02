@@ -7,9 +7,9 @@
 <table class="table">
   <th>Productnaam</th>
   <th>Type</th>
-  <th>Fabrikant</th>
-  <th>Inkoopprijs</th>
-  <th>Verkoopprijs</th>
+  <th>Merk</th>
+  <th>Aankoopprijs</th>
+  <th>Set</th>
   <th></th>
   <th></th>
 <?php
@@ -17,13 +17,13 @@
 foreach ($productJoined as $row)
 {
   echo "<tr>";
-  echo "<td>" . $row->productNaam . "</td>";
+  echo "<td>" . $row->productName . "</td>";
   echo "<td>" . $row->type . "</td>";
-  echo "<td>" . $row->fabrikantNaam . "</td>";
-  echo "<td>€ " . $row->inkoopprijs . "</td>";
-  echo "<td>€ " . $row->verkoopprijs . "</td>";
-  echo "<td><a href='/ProductController/loadEditProductView/". $row->productId . '/' . $row->productNaam . '/' . $row->type. '/' . $row->fabrikantId . '/' . $row->inkoopprijs. '/' . $row->verkoopprijs . "'>Bewerken</a></td>";
-  echo "<td><a href='/ProductController/deleteProduct/" . $row->productId . "'>Verwijderen</a></td>";
+  echo "<td>" . $row->brandName . "</td>";
+  echo "<td>€ " . $row->price . "</td>";
+  echo "<td> " . $row->minimumAmountPerPurchase . "</td>";
+  echo "<td><a href='/ProductController/loadEditProductView/". $row->productId . '/' . $row->productName . '/' . $row->type. '/' . $row->brandName . '/' . $row->price. '/' . $row->minimumAmountPerPurchase . "'>Bewerk</a></td>";
+  echo "<td><a href='/ProductController/deleteProduct/" . $row->productId . "'>Verwijder</a></td>";
   echo "</tr>";
 }
 
