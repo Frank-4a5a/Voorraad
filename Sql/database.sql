@@ -1,39 +1,39 @@
 -- verwijder de database als hij al bestaat
-DROP DATABASE IF EXISTS voorraad;
+DROP DATABASE IF EXISTS warehouse;
 
--- maak database aan met naam voorraad
-CREATE DATABASE voorraad;
+-- maak database aan met naam warehouse
+CREATE DATABASE warehouse;
 
--- maak tabel merk aan met PRIMARY KEY merkId
-CREATE TABLE merk(
-  merkId int(11) NOT NULL AUTO_INCREMENT,
-  merkNaam varchar(35),
-  PRIMARY KEY (merkId)
+-- maak tabel brand aan met PRIMARY KEY brandId
+CREATE TABLE brand(
+  brandId int(11) NOT NULL AUTO_INCREMENT,
+  brandName varchar(35),
+  PRIMARY KEY (brandId)
 )ENGINE=InnoDB;
 
--- maak tabel product aan met PRIMARY KEY productId en FOREIGN KEY merkId die zich aanpast op UPDATE
+-- maak tabel product aan met PRIMARY KEY productId en FOREIGN KEY brandId die zich aanpast op UPDATE
 CREATE TABLE product(
   productId int(11) NOT NULL AUTO_INCREMENT,
-  productNaam varchar(35),
+  productName varchar(35),
   type varchar(35),
-  merkId int(11),
-  aankoopprijs decimal(6,2),
-  minimumAantalPerAankoop int(11),
+  brandId int(11),
+  price decimal(6,2),
+  minimumAmountPerPurchase int(11),
   PRIMARY KEY (productId),
-  FOREIGN KEY (merkId) REFERENCES merk(merkId) ON UPDATE CASCADE
+  FOREIGN KEY (brandId) REFERENCES brand(brandId) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
--- maak tabel voorraad aan met PRIMARY KEY voorraadId en FOREIGN KEY productId die zich aanpast op UPDATE
-CREATE TABLE voorraad(
-  voorraadId int(11) NOT NULL AUTO_INCREMENT,
+-- maak tabel stock aan met PRIMARY KEY voorraadId en FOREIGN KEY productId die zich aanpast op UPDATE
+CREATE TABLE stock(
+  stockId int(11) NOT NULL AUTO_INCREMENT,
   productId int(11) NOT NULL,
-  aantal int(11),
-  PRIMARY KEY (voorraadId),
+  currentAmount int(11),
+  PRIMARY KEY (stockId),
   FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
--- voer gegevens in tabel merk
-INSERT INTO merk(merkNaam)
+-- voer gegevens in tabel brand
+INSERT INTO brand(brandName)
   values('Bison'),
   ('Duracell'),
   ('Weidmüller'),
@@ -45,7 +45,7 @@ INSERT INTO merk(merkNaam)
   ('Diotec');
 
 -- voer gegevens in tabel product
-INSERT INTO product(productNaam, type, merkId, aankoopprijs, minimumAantalPerAankoop)
+INSERT INTO product(productName, type, brandId, price, minimumAmountPerPurchase)
   values('Lijm', 'Extreem klevend', '1', '10.00', '1'),
   ('Batterij', 'Lithium 69v', '2', '4.00', '6'),
   ('Tiewrap', 'Zwart 10cm', '3', '3.50', '10'),
@@ -56,8 +56,8 @@ INSERT INTO product(productNaam, type, merkId, aankoopprijs, minimumAantalPerAan
   ('Transistor', 'iets met ohm', '8', '16.00', '5'),
   ('Diode', 'geen idee', '9', '18.00', '5');
 
--- voer gegevens in tabel voorraad
-INSERT INTO voorraad(productId, aantal)
+-- voer gegevens in tabel stock
+INSERT INTO stock(productId, currentAmount)
   values('1', '3'),
   ('2', '4'),
   ('3', '11'),
