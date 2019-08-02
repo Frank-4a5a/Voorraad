@@ -4,7 +4,7 @@ DROP DATABASE IF EXISTS voorraad;
 -- maak database aan met naam voorraad
 CREATE DATABASE voorraad;
 
--- maak tabel fabrikant aan met PRIMARY KEY fabrikantId
+-- maak tabel merk aan met PRIMARY KEY merkId
 CREATE TABLE merk(
   merkId int(11) NOT NULL AUTO_INCREMENT,
   merkNaam varchar(35),
@@ -23,7 +23,7 @@ CREATE TABLE product(
   FOREIGN KEY (merkId) REFERENCES merk(merkId) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
--- maak tabel voorraad aan met PRIMARY KEY productId en FOREIGN KEY productId die zich aanpast op UPDATE
+-- maak tabel voorraad aan met PRIMARY KEY voorraadId en FOREIGN KEY productId die zich aanpast op UPDATE
 CREATE TABLE voorraad(
   voorraadId int(11) NOT NULL AUTO_INCREMENT,
   productId int(11) NOT NULL,
@@ -44,6 +44,7 @@ INSERT INTO merk(merkNaam)
   ('Infineon Technologies'),
   ('Diotec');
 
+-- voer gegevens in tabel product
 INSERT INTO product(productNaam, type, merkId, aankoopprijs, minimumAantalPerAankoop)
   values('Lijm', 'Extreem klevend', '1', '10.00', '1'),
   ('Batterij', 'Lithium 69v', '2', '4.00', '6'),
@@ -55,7 +56,7 @@ INSERT INTO product(productNaam, type, merkId, aankoopprijs, minimumAantalPerAan
   ('Transistor', 'iets met ohm', '8', '16.00', '5'),
   ('Diode', 'geen idee', '9', '18.00', '5');
 
-
+-- voer gegevens in tabel voorraad
 INSERT INTO voorraad(productId, aantal)
   values('1', '3'),
   ('2', '4'),
