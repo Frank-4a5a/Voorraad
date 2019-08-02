@@ -1,88 +1,68 @@
 -- verwijder de database als hij al bestaat
-DROP DATABASE IF EXISTS toolsforever;
+DROP DATABASE IF EXISTS voorraad;
 
--- maak database aan met naam toolsforever
-CREATE DATABASE toolsforever;
-
--- maak tabel medewerker aan met PRIMARY KEY medewerkerId
-CREATE TABLE medewerker(
-  medewerkerId int(11) NOT NULL AUTO_INCREMENT,
-  voornaam varchar(15),
-  tussenvoegsel varchar(15),
-  achternaam varchar(15),
-  gebruikersnaam varchar(15),
-  wachtwoord varchar(42),
-  PRIMARY KEY (medewerkerId)
-)ENGINE=InnoDB;
-
--- maak tabel locatie aan met PRIMARY KEY locatieId
-CREATE TABLE locatie(
-  locatieId int(11) NOT NULL AUTO_INCREMENT,
-  locatieNaam varchar(15),
-  PRIMARY KEY (locatieId)
-)ENGINE=InnoDB;
+-- maak database aan met naam voorraad
+CREATE DATABASE voorraad;
 
 -- maak tabel fabrikant aan met PRIMARY KEY fabrikantId
-CREATE TABLE fabrikant(
-  fabrikantId int(11) NOT NULL AUTO_INCREMENT,
-  fabrikantNaam varchar(15),
-  PRIMARY KEY (fabrikantId)
+CREATE TABLE merk(
+  merkId int(11) NOT NULL AUTO_INCREMENT,
+  merkNaam varchar(35),
+  PRIMARY KEY (merkId)
 )ENGINE=InnoDB;
 
--- maak tabel product aan met PRIMARY KEY productId en FOREIGN KEY fabrikantId die zich aanpast op UPDATE en DELETE
+-- maak tabel product aan met PRIMARY KEY productId en FOREIGN KEY merkId die zich aanpast op UPDATE
 CREATE TABLE product(
   productId int(11) NOT NULL AUTO_INCREMENT,
-  productNaam varchar(15),
-  type varchar(15),
-  fabrikantId int(11),
-  inkoopprijs decimal(6,2),
-  verkoopprijs decimal(6,2),
+  productNaam varchar(35),
+  type varchar(35),
+  merkId int(11),
+  aankoopprijs decimal(6,2),
+  minimumAantalPerAankoop int(11),
   PRIMARY KEY (productId),
-  FOREIGN KEY (fabrikantId) REFERENCES fabrikant(fabrikantId) ON UPDATE CASCADE ON DELETE CASCADE
+  FOREIGN KEY (merkId) REFERENCES merk(merkId) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
--- maak tabel voorraad aan met samengestelde PRIMARY KEY locatieId, productId en FOREIGN KEY locatieId, productId die zich aanpast op UPDATE en DELETE
+-- maak tabel voorraad aan met PRIMARY KEY productId en FOREIGN KEY productId die zich aanpast op UPDATE
 CREATE TABLE voorraad(
+  voorraadId int(11) NOT NULL AUTO_INCREMENT,
   productId int(11) NOT NULL,
-  locatieId int(11) NOT NULL,
   aantal int(11),
-  minimumAantal int(11),
-  PRIMARY KEY (productId, locatieId),
-  FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE ON DELETE CASCADE,
-  FOREIGN KEY (locatieId) REFERENCES locatie(locatieId) ON UPDATE CASCADE ON DELETE CASCADE
+  PRIMARY KEY (voorraadId),
+  FOREIGN KEY (productId) REFERENCES product(productId) ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
--- voer gegevens in tabel medewerker
-INSERT INTO medewerker(voornaam, tussenvoegsel, achternaam, gebruikersnaam, wachtwoord)
-  values('Hans', 'De', 'Timmerman', 'Htimmerman', PASSWORD('Hans123')),
-  ('Jim', NULL, 'Huizen', 'Jhuizen', PASSWORD('Jim123')),
-  ('Frans', NULL, 'Rietboer', 'Frietboer', PASSWORD('Frans123'));
+-- voer gegevens in tabel merk
+INSERT INTO merk(merkNaam)
+  values('Bison'),
+  ('Duracell'),
+  ('Weidmüller'),
+  ('HECO'),
+  ('Spax'),
+  ('Martens'),
+  ('Dresselhaus'),
+  ('Infineon Technologies'),
+  ('Diotec');
 
--- voer gegevens in tabel locatie
-INSERT INTO locatie(locatieNaam)
-  values('Almere'),
-  ('Eindhoven'),
-  ('Rotterdam');
-
--- voer gegevens in tabel fabrikant
-INSERT INTO fabrikant(fabrikantNaam)
-  values('Einhell'),
-  ('Bosch'),
-  ('Makita');
-
-INSERT INTO product(productNaam, type, fabrikantId, inkoopprijs, verkoopprijs)
-  values('Zaag', 'ZG123', '3', '20.00', '25.00'),
-  ('Hamer', 'HR123', '2', '15.00', '20.00'),
-  ('Boormachine', 'BE123', '1', '150.00', '175.00');
+INSERT INTO product(productNaam, type, merkId, aankoopprijs, minimumAantalPerAankoop)
+  values('Lijm', 'Extreem klevend', '1', '10.00', '1'),
+  ('Batterij', 'Lithium 69v', '2', '4.00', '6'),
+  ('Tiewrap', 'Zwart 10cm', '3', '3.50', '10'),
+  ('Schroef', 'Plat 10mm', '4', '5.00', '10'),
+  ('Schroef', 'Kruis 10mm', '5', '7.00', '10'),
+  ('Schroef', 'Plat 15mm', '6', '4.00', '10'),
+  ('Schroef', 'Kruis 15mm', '7', '6.00', '10'),
+  ('Transistor', 'iets met ohm', '8', '16.00', '5'),
+  ('Diode', 'geen idee', '9', '18.00', '5');
 
 
-INSERT INTO voorraad(productId, locatieId, aantal, minimumAantal)
-  values('1', '1', '15', '5'),
-  ('1', '2', '23', '10'),
-  ('1', '3', '43', '20'),
-  ('2', '1', '21', '5'),
-  ('2', '2', '19', '10'),
-  ('2', '3', '32', '20'),
-  ('3', '1', '31', '5'),
-  ('3', '2', '46', '10'),
-  ('3', '3', '37', '15');
+INSERT INTO voorraad(productId, aantal)
+  values('1', '3'),
+  ('2', '4'),
+  ('3', '11'),
+  ('4', '5'),
+  ('5', '7'),
+  ('6', '5'),
+  ('7', '2'),
+  ('8', '8'),
+  ('9', '8');
