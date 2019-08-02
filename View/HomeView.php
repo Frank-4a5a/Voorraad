@@ -1,5 +1,4 @@
-<h1>Voorraad Pagina</h1>
-<p>Dit is het voorraad beheer systeem</p>
+<p>Overzicht Pagina</p>
 <div class="row">
 <table class="col-4">
   <tr>

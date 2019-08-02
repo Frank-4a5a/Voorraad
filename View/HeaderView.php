@@ -9,18 +9,12 @@
     <title></title>
   </head>
   <body>
-    <div class="container">
-      <p>headerpagina</p>
-        <!-- <nav class="nav-bar">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">ToolsForEver</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a href="/ProductController/showProduct">Producten</a></li>
-            <li><a href="/VoorraadController/showVoorraad">Voorraad</a></li>
-            <li><a href="/LocatieController/showLocatie">Locatie</a></li>
-            <li><a href="/FabrikantController/showFabrikant">Fabrikant</a></li>
-          </ul>
-        </nav> -->
+    <div class="container-fluid">
+      <span class="col-12"></span>
+      <ul class="row navigationList">
+        <li class="col-4"><a href="/">Overzicht</a></li>
+        <li class="col-4"><a href="/ProductController/showProduct">Producten</a></li>
+        <li class="col-4"><a href="/VoorraadController/showVoorraad">Voorraad</a></li>
+      </ul>
     </div>
-    <div class="container">
+    <div class="container-fluid">

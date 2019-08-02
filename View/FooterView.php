@@ -1,5 +1,5 @@
 </div>
-<div class="container">
+<div class="container-fluid">
 <p>footerpagina</p>
 </div>
 </body>
