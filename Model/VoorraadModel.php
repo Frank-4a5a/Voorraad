@@ -20,7 +20,7 @@ class VoorraadModel
   }
   public function getAllJoined()
   {
-    $sql = "SELECT * FROM voorraad NATURAL JOIN product NATURAL JOIN locatie";
+    $sql = "SELECT * FROM stock NATURAL JOIN product";
     $pdo = $this->pdo;
     $stmt = $pdo->prepare($sql);
     $stmt->execute();

@@ -20,7 +20,7 @@ class ProductModel
   }
   public function getAllJoined()
   {
-    $sql = "SELECT * FROM product NATURAL JOIN fabrikant";
+    $sql = "SELECT * FROM product NATURAL JOIN brand";
     $pdo = $this->pdo;
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
