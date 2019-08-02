@@ -12,9 +12,9 @@ td
 {
   height: 70px;
 }
-table
+.searchForm
 {
-  border: 2px blue solid;
+  border: none !important;
 }
 .navigationList
 {
